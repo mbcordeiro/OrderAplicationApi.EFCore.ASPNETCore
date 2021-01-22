@@ -10,12 +10,12 @@ namespace OrderApplicationAPi.Domain
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
-        public Cliente Client { get; set; }
+        public Client Client { get; set; }
         public DateTime OrderStart { get; set; }
         public DateTime OrderEnd { get; set; }
-        public TypeFreight typeFreigth { get; set; }
-        public OrderStatus orderStatus { get; set; }
+        public TypeFreight TypeFreigth { get; set; }
+        public OrderStatus OrderStatus { get; set; }
         public string Observation { get; set; }
-        public ICollection<OrderItem> orderItems { get; set; }
+        public ICollection<OrderItem> OrderItems { get; set; }
     }
 }
