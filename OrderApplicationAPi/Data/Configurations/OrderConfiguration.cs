@@ -14,7 +14,7 @@ namespace OrderApplicationAPi.Data.Configurations
         {
             builder.ToTable("Orders");
             builder.HasKey(o => o.Id);
-            builder.Property(o => o.OrderStart).HasDefaultValue("GETDATE()").ValueGeneratedOnAdd();
+            builder.Property(o => o.OrderStart).HasDefaultValueSql("GETDATE()").ValueGeneratedOnAdd();
             builder.Property(o => o.OrderStatus).HasConversion<string>();
             builder.Property(o => o.TypeFreigth).HasConversion<int>();
             builder.Property(o => o.Observation).HasColumnType("VARCHAR(512");
