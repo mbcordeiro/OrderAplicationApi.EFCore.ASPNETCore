@@ -15,7 +15,11 @@ namespace OrderApplicationAPi
         public static void Main(string[] args)
         {
             using var db = new Data.ApplicationContext();
-            db.Database.Migrate();
+            var existMigrate = db.Database.GetPendingMigrations().Any();
+            if(existMigrate)
+            {
+                //
+            }
             CreateHostBuilder(args).Build().Run();
         }
 
