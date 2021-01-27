@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OrderApplicationAPi.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +52,7 @@ namespace OrderApplicationAPi.Migrations
                     OrderEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TypeFreigth = table.Column<int>(type: "int", nullable: false),
                     OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Observation = table.Column<string>(type: "VARCHAR(512", nullable: true)
+                    Observation = table.Column<string>(type: "VARCHAR(512)", nullable: true)
                 },
                 constraints: table =>
                 {

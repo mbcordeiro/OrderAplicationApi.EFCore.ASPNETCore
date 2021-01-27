@@ -17,7 +17,7 @@ namespace OrderApplicationAPi.Data.Configurations
             builder.Property(o => o.OrderStart).HasDefaultValueSql("GETDATE()").ValueGeneratedOnAdd();
             builder.Property(o => o.OrderStatus).HasConversion<string>();
             builder.Property(o => o.TypeFreigth).HasConversion<int>();
-            builder.Property(o => o.Observation).HasColumnType("VARCHAR(512");
+            builder.Property(o => o.Observation).HasColumnType("VARCHAR(512)");
             builder.HasMany(o => o.OrderItems).WithOne(o => o.Order).OnDelete(DeleteBehavior.Cascade);
         }
     }

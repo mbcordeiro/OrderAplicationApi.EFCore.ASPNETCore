@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,8 @@ namespace OrderApplicationAPi
     {
         public static void Main(string[] args)
         {
+            using var db = new Data.ApplicationContext();
+            db.Database.Migrate();
             CreateHostBuilder(args).Build().Run();
         }
 

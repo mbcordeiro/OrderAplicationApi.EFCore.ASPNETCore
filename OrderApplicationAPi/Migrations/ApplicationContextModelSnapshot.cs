@@ -65,7 +65,7 @@ namespace OrderApplicationAPi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Observation")
-                        .HasColumnType("VARCHAR(512");
+                        .HasColumnType("VARCHAR(512)");
 
                     b.Property<DateTime>("OrderEnd")
                         .HasColumnType("datetime2");

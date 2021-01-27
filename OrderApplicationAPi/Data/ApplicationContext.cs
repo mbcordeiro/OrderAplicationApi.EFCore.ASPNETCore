@@ -13,8 +13,9 @@ namespace OrderApplicationAPi.Data
         public DbSet<Order> Orders { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            dbContextOptionsBuilder.UseSqlServer(@"Data Source = .\SQLEXPRESS; Initial Catalog = OrderApplicationAPi; Trusted_Connection=True;");
+            dbContextOptionsBuilder.UseSqlServer("Data source =(localdb)\\mssqllocaldb; Initial Catalog=OrderDB; Integrated Security=true;");
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

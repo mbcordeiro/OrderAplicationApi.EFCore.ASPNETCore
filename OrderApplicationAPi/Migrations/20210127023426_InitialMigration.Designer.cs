@@ -10,8 +10,8 @@ using OrderApplicationAPi.Data;
 namespace OrderApplicationAPi.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210124193436_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210127023426_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,7 +67,7 @@ namespace OrderApplicationAPi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Observation")
-                        .HasColumnType("VARCHAR(512");
+                        .HasColumnType("VARCHAR(512)");
 
                     b.Property<DateTime>("OrderEnd")
                         .HasColumnType("datetime2");
