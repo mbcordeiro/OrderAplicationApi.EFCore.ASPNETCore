@@ -24,7 +24,8 @@ namespace OrderApplicationAPi
             }
             CreateHostBuilder(args).Build().Run();*/
             /*InsertData();*/
-            InsertMuchData();
+            /*InsertMuchDatas();*/
+            QueryDatas();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -33,7 +34,19 @@ namespace OrderApplicationAPi
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-        private static void InsertMuchData()
+        private static void QueryDatas()
+        {
+            using var db = new Data.ApplicationContext();
+            /*var query = (from c in db.Clients where c.Id > 0 select c);*/
+            var queryLinq = db.Clients.AsNoTracking().Where(c => c.Id > 0).OrderBy(c => c.Id).ToList();
+            foreach(var client in queryLinq)
+            {
+                Console.WriteLine($"Query client:{client.Id}");
+                /*db.Clients.Find(client.Id);*/
+                db.Clients.FirstOrDefault(c => c.Id == client.Id);
+            }
+        }
+        private static void InsertMuchDatas()
         {
             var product = new Product
             {
@@ -81,7 +94,7 @@ namespace OrderApplicationAPi
             Console.WriteLine($"Affected data: {changes}");
         }
 
-        private static void InsertData()
+        private static void InsertDatas()
         {
             var product = new Product
             {
