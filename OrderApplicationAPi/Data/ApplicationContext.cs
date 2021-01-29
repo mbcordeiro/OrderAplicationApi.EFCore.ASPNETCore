@@ -33,7 +33,7 @@ namespace OrderApplicationAPi.Data
         {
             foreach(var entity in modelBuilder.Model.GetEntityTypes())
             {
-                var properties = entity.GetProperties().Where(p => p.ClrType == typeof(string);
+                var properties = entity.GetProperties().Where(p => p.ClrType == typeof(string));
                 foreach(var property in properties)
                 {
                     if(string.IsNullOrEmpty(property.GetColumnType()) && !property.GetMaxLength().HasValue) 
