@@ -5,19 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using OrderApplicationAPi.Domain;
 using OrderApplicationAPi.Data.Configurations;
+using Microsoft.Extensions.Logging;
 
 namespace OrderApplicationAPi.Data
 {
     public class ApplicationContext : DbContext
     {
+        private static readonly ILoggerFactory _logger = LoggerFactory.Create(p => p.AddConsole());
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Client> Clients { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            dbContextOptionsBuilder.UseSqlServer("Data source =(localdb)\\mssqllocaldb; Initial Catalog=OrderDB; Integrated Security=true;");
+            dbContextOptionsBuilder
+                .UseLoggerFactory(_logger)
+                .EnableSensitiveDataLogging()
+                .UseSqlServer("Data source =(localdb)\\mssqllocaldb; Initial Catalog=OrderDB; Integrated Security=true;");
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

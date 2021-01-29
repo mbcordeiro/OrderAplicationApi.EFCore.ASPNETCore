@@ -23,7 +23,8 @@ namespace OrderApplicationAPi
                 //
             }
             CreateHostBuilder(args).Build().Run();*/
-            InsertData();
+            /*InsertData();*/
+            InsertMuchData();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -32,6 +33,54 @@ namespace OrderApplicationAPi
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+        private static void InsertMuchData()
+        {
+            var product = new Product
+            {
+                Description = "Product",
+                BarCode = "1234567891234",
+                Value = 10,
+                ProductType = ProductType.Resale,
+                Active = true
+            };
+
+            var client = new Client
+            {
+                Name = "Client",
+                Phone = "47999999999",
+                Cep = "12345678",
+                City = "Blumenau",
+                State = "SC",
+            };
+
+            var listClient = new[]
+            {
+                  new Client
+                {
+                    Name = "Client",
+                    Phone = "47999999999",
+                    Cep = "12345678",
+                    City = "Blumenau",
+                    State = "SC",
+                },
+                    new Client
+                {
+                    Name = "Client",
+                    Phone = "47999999999",
+                    Cep = "12345678",
+                    City = "Blumenau",
+                    State = "SC",
+                },
+            };
+
+            using var db = new Data.ApplicationContext();
+            /*db.AddRange(product, client);*/
+            /*db.Set<Client>().AddRange(listClient);*/
+            db.Clients.AddRange(listClient);
+            var changes = db.SaveChanges();
+            Console.WriteLine($"Affected data: {changes}");
+        }
+
         private static void InsertData()
         {
             var product = new Product
