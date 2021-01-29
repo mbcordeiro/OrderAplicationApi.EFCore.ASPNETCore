@@ -28,7 +28,8 @@ namespace OrderApplicationAPi
             /*QueryDatas();*/
             /*InsertOrder();*/
             /*QueryOderLoadScheduled();*/
-            UpdateDatas();
+            /*UpdateDatas();*/
+            DeleteDatas();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -175,6 +176,20 @@ namespace OrderApplicationAPi
             /*db.Clients.Update(client);*/
             db.Attach(client);
             db.Entry(client).CurrentValues.SetValues(clientDesconnect);
+            db.SaveChanges();
+        }
+
+        private static void DeleteDatas()
+        {
+            using var db = new Data.ApplicationContext();
+            /*var client = db.Clients.Find(2);*/
+            /*db.Clients.Remove(client);*/
+            /*db.Entry(client).State = EntityState.Deleted;*/
+            var client = new Client
+            {
+                Id = 3
+            };
+            db.Remove(client);
             db.SaveChanges();
         }
     }
