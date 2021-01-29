@@ -25,7 +25,9 @@ namespace OrderApplicationAPi
             CreateHostBuilder(args).Build().Run();*/
             /*InsertData();*/
             /*InsertMuchDatas();*/
-            QueryDatas();
+            /*QueryDatas();*/
+            /*InsertOrder();*/
+            QueryOderLoadScheduled();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -45,6 +47,13 @@ namespace OrderApplicationAPi
                 /*db.Clients.Find(client.Id);*/
                 db.Clients.FirstOrDefault(c => c.Id == client.Id);
             }
+        }
+
+        private static void QueryOderLoadScheduled()
+        {
+            using var db = new Data.ApplicationContext();
+            var order = db.Orders.Include(o => o.OrderItems).ThenInclude(o => o.Product).ToList();
+            Console.WriteLine(order.Count);
         }
         private static void InsertMuchDatas()
         {
@@ -113,6 +122,36 @@ namespace OrderApplicationAPi
 
             var changes = db.SaveChanges();
             Console.WriteLine($"Affected data: {changes}");
+        }
+
+        public static void InsertOrder()
+        {
+            using var db = new Data.ApplicationContext();
+
+            var client = db.Clients.FirstOrDefault();
+            var product = db.Products.FirstOrDefault();
+
+            var order = new Order
+            {
+                ClientId = client.Id,
+                OrderStart = DateTime.Now,
+                OrderEnd = DateTime.Now,
+                Observation = "Order",
+                OrderStatus = OrderStatus.Analise,
+                TypeFreigth = TypeFreight.NoneFreight,
+                OrderItems = new List<OrderItem>
+                   {
+                      new OrderItem
+                      {
+                         ProductId = product.Id,
+                         Discount = 0,
+                         Quantity = 1,
+                         Value = 10
+                      }
+                    }
+            };
+            db.Orders.Add(order);
+            db.SaveChanges();
         }
     }
 }
