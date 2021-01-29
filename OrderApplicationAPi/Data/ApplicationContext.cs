@@ -11,6 +11,8 @@ namespace OrderApplicationAPi.Data
     public class ApplicationContext : DbContext
     {
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Client> Clients { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
             dbContextOptionsBuilder.UseSqlServer("Data source =(localdb)\\mssqllocaldb; Initial Catalog=OrderDB; Integrated Security=true;");
