@@ -20,7 +20,8 @@ namespace OrderApplicationAPi.Data
             dbContextOptionsBuilder
                 .UseLoggerFactory(_logger)
                 .EnableSensitiveDataLogging()
-                .UseSqlServer("Data source =(localdb)\\mssqllocaldb; Initial Catalog=OrderDB; Integrated Security=true;");
+                .UseSqlServer("Data source =(localdb)\\mssqllocaldb; Initial Catalog=OrderDB; Integrated Security=true;", 
+                    p => p.EnableRetryOnFailure(maxRetryCount: 2, maxRetryDelay: TimeSpan.FromSeconds(5), errorNumbersToAdd: null));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
